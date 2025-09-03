@@ -788,10 +788,7 @@
             <p class="text-slate-500 font-mono text-sm">&copy; 2025 MUHAMMAD ANFASA UMAR. ALL RIGHTS RESERVED: <span class="text-green-400">OPERATIONAL</span></p>
         </div>
     </footer>
-    
-    <audio id="ambient-sound" src="ambient.mp3" loop></audio>
-    <audio id="hover-sound" src="hover.mp3"></audio>
-    <audio id="click-sound" src="click.mp3"></audio>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -822,40 +819,10 @@
                     setTimeout(() => {
                         preloader.classList.add("preloader-hidden");
                         document.body.classList.add("body-loaded");
-                        document.getElementById("ambient-sound")?.play().catch(() => {});
                     }, 500);
                 }
             }
-            
             printLog();
-
-            // --- AUDIO CONTROLS ---
-            let isMuted = false;
-            const ambientSound = document.getElementById("ambient-sound");
-            const hoverSound = document.getElementById("hover-sound");
-            const clickSound = document.getElementById("click-sound");
-            const muteBtn = document.getElementById("mute-btn");
-
-            const playSound = (audio) => {
-                if (!isMuted && audio) {
-                    audio.currentTime = 0;
-                    audio.play().catch(() => {});
-                }
-            };
-
-            muteBtn.addEventListener("click", () => {
-                isMuted = !isMuted;
-                muteBtn.innerHTML = `<i data-lucide="${isMuted ? "volume-x" : "volume-2"}"></i>`;
-                lucide.createIcons();
-                if (ambientSound) {
-                    isMuted ? ambientSound.pause() : ambientSound.play().catch(() => {});
-                }
-            });
-
-            document.querySelectorAll("a, button, .card-cyber").forEach(el => {
-                el.addEventListener("mouseenter", () => playSound(hoverSound));
-                el.addEventListener("click", () => playSound(clickSound));
-            });
 
             // --- HIDE/SHOW NAV ON SCROLL ---
             let lastScrollY = window.scrollY;
